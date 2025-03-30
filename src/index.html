@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hourly Pay Calculator</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>⏱️ Hourly Pay Calculator</h1>
+  </header>
+
+  <main class="calculator-container">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('pay-tab')">📋 Enter Your Details</button>
+      <button class="tab" onclick="showTab('hours-tab')">⏳ Calculate Hours</button>
+    </div>
+
+    <!-- Pay Calculation Tab -->
+    <div id="pay-tab" class="tab-content">
+      <form class="calculator-form">
+        <label>
+          Hourly Rate
+          <input id="hourly-rate" type="number" placeholder="$" />
+        </label>
+        <label>
+          Hours Worked
+          <input id="hours-worked" type="number" placeholder="e.g. 40" />
+        </label>
+        <label>
+          Overtime Hours
+          <input id="overtime-hours" type="number" placeholder="e.g. 5" />
+        </label>
+        <label>
+          Deductions
+          <input id="deductions" type="number" placeholder="$" />
+        </label>
+      </form>
+
+      <div class="results">
+        <p>Total Pay: <span id="total-pay">$0.00</span></p>
+        <p><strong>Net Pay: <span id="net-pay">$0.00</span></strong></p>
+      </div>
+    </div>
+
+    <!-- Hours Calculation Tab -->
+    <div id="hours-tab" class="tab-content" style="display: none;">
+      <form class="calculator-form">
+        <label>
+          Start Time
+          <input id="start-time" type="time" />
+        </label>
+        <label>
+          End Time
+          <input id="end-time" type="time" />
+        </label>
+        <label>
+          Break Duration (minutes)
+          <input id="break-duration" type="number" placeholder="e.g. 30" />
+        </label>
+      </form>
+
+      <button onclick="calculateHours()">Calculate Hours</button>
+
+      <div class="results">
+        <p>Calculated Hours: <span id="calculated-hours">0.00</span> hours</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Designed and built by <strong>Tolulope Aina</strong> ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -55,12 +55,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showTab(tabId) {
+    // Hide all tab content
     document.querySelectorAll(".tab-content").forEach(tab => {
       tab.style.display = "none";
     });
+  
+    // Show the selected tab content
     document.getElementById(tabId).style.display = "block";
+  
+    // Update the active tab
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.classList.remove("active");
+    });
+  
+    // Add active class to the clicked tab
+    const clickedTab = document.querySelector(`[onclick="showTab('${tabId}')"]`);
+    clickedTab.classList.add("active");
+  
+    // Move the underline
+    updateUnderline(clickedTab);
   }
-
+  
+  function updateUnderline(activeTab) {
+    const underline = document.querySelector(".tab-underline");
+    underline.style.width = `${activeTab.offsetWidth}px`;
+    underline.style.left = `${activeTab.offsetLeft}px`;
+  }
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    // Add an underline div
+    const tabsContainer = document.querySelector(".tabs");
+    const underline = document.createElement("div");
+    underline.classList.add("tab-underline");
+    tabsContainer.appendChild(underline);
+  
+    // Set initial position
+    const activeTab = document.querySelector(".tab.active");
+    if (activeTab) updateUnderline(activeTab);
+  });
   // Attach event listeners
   [hourlyRateInput, hoursWorkedInput, overtimeHoursInput, deductionsInput].forEach(input => {
     input.addEventListener("input", calculatePay);

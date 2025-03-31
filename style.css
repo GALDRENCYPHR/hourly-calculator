@@ -17,9 +17,18 @@ body {
 header {
   background: #1e1e1e;
   padding: 1rem 2rem;
-  text-align: left;
+  text-align: center; /* Center text horizontally */
   font-size: 1.5rem;
   border-bottom: 1px solid #333;
+  position: fixed; /* Make it stay at the top */
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+body {
+  padding-top: 80px; /* Add padding to prevent content from being hidden behind the fixed header */
 }
 
 .calculator-container {
@@ -32,6 +41,7 @@ header {
 }
 
 .tabs {
+  position: relative;
   display: flex;
   border-bottom: 1px solid #444;
   margin-bottom: 1rem;
@@ -45,13 +55,23 @@ header {
   border: none;
   cursor: pointer;
   font-weight: bold;
+  text-align: center;
+  position: relative;
 }
 
 .tab.active {
   color: #fff;
-  border-bottom: 3px solid #fff;
 }
 
+.tab-underline {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background: #fff;
+  width: 0;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
 .calculator-form {
   display: flex;
   flex-direction: column;

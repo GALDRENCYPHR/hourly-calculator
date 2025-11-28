@@ -12,24 +12,20 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 80px; /* Offset fixed header */
 }
 
 header {
   background: #1e1e1e;
   padding: 1rem 2rem;
-  text-align: center; /* Center text horizontally */
+  text-align: center;
   font-size: 1.5rem;
   border-bottom: 1px solid #333;
-  position: fixed; /* Make it stay at the top */
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensure it stays above other elements ok
-   */
-}
-
-body {
-  padding-top: 80px; /* Add padding to prevent content from being hidden behind the fixed header */
+  z-index: 1000; /* Keep header above tabs */
 }
 
 .calculator-container {
@@ -60,6 +56,11 @@ body {
   position: relative;
 }
 
+.tab:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
 .tab.active {
   color: #fff;
 }
@@ -72,7 +73,9 @@ body {
   width: 0;
   left: 0;
   transition: all 0.3s ease-in-out;
+  pointer-events: none;
 }
+
 .calculator-form {
   display: flex;
   flex-direction: column;
@@ -106,6 +109,34 @@ body {
 
 .results span {
   font-weight: bold;
+}
+
+.tab-content[aria-hidden="true"] {
+  display: none;
+}
+
+button {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s ease-in-out;
+}
+
+button:hover,
+button:focus-visible {
+  opacity: 0.85;
+}
+
+.status-message {
+  margin-top: 1rem;
+  text-align: center;
+  min-height: 1.25rem;
+  font-size: 0.95rem;
+  color: #ff8a80;
 }
 
 footer {

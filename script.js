@@ -78,24 +78,41 @@ document.addEventListener("DOMContentLoaded", () => {
   
   function updateUnderline(activeTab) {
     const underline = document.querySelector(".tab-underline");
-    underline.style.width = `${activeTab.offsetWidth}px`;
-    underline.style.left = `${activeTab.offsetLeft}px`;
+    if (underline && activeTab) {
+      underline.style.width = `${activeTab.offsetWidth}px`;
+      underline.style.left = `${activeTab.offsetLeft}px`;
+    }
   }
   
-  document.addEventListener("DOMContentLoaded", () => {
-    // Add an underline div
+  function initializeUnderline() {
     const tabsContainer = document.querySelector(".tabs");
-    const underline = document.createElement("div");
-    underline.classList.add("tab-underline");
-    tabsContainer.appendChild(underline);
+    let underline = document.querySelector(".tab-underline");
+    
+    // Create underline if it doesn't exist
+    if (!underline) {
+      underline = document.createElement("div");
+      underline.classList.add("tab-underline");
+      tabsContainer.appendChild(underline);
+    }
   
     // Set initial position
     const activeTab = document.querySelector(".tab.active");
-    if (activeTab) updateUnderline(activeTab);
-  });
+    if (activeTab) {
+      updateUnderline(activeTab);
+    }
+  }
   // Attach event listeners
   [hourlyRateInput, hoursWorkedInput, overtimeHoursInput, deductionsInput].forEach(input => {
     input.addEventListener("input", calculatePay);
+  });
+
+  // Initialize underline on first load
+  initializeUnderline();
+  
+  // Re-initialize underline on window resize to keep it positioned correctly
+  window.addEventListener('resize', () => {
+    const activeTab = document.querySelector(".tab.active");
+    if (activeTab) updateUnderline(activeTab);
   });
 
   window.calculateHours = calculateHours;

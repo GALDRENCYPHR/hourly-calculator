@@ -23,79 +23,61 @@
   </header>
 
   <main class="calculator-container">
-    <div class="tabs" role="tablist">
-      <button id="pay-tab-button"
-              class="tab active"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              aria-controls="pay-tab"
-              data-tab-target="pay-tab">
-        📋 Enter Your Details
-      </button>
-      <button id="hours-tab-button"
-              class="tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="hours-tab"
-              data-tab-target="hours-tab">
-        ⏳ Calculate Your Hours
-      </button>
-      <div class="tab-underline" aria-hidden="true"></div>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('pay-tab')">📋 Enter Your Details</button>
+      <button class="tab" onclick="showTab('hours-tab')">⏳ Calculate Your Hours</button>
     </div>
 
     <!-- Pay Calculation Tab -->
-    <div id="pay-tab" class="tab-content" role="tabpanel" aria-labelledby="pay-tab-button">
-      <form class="calculator-form" novalidate>
-        <label for="hourly-rate">
+    <div id="pay-tab" class="tab-content">
+      <form class="calculator-form">
+        <label>
           Hourly Rate
-          <input id="hourly-rate" type="number" min="0" step="0.01" placeholder="$" inputmode="decimal" />
+          <input id="hourly-rate" type="number" placeholder="$" />
         </label>
-        <label for="hours-worked">
+        <label>
           Hours Worked
-          <input id="hours-worked" type="number" min="0" step="0.25" placeholder="e.g. 40" inputmode="decimal" />
+          <input id="hours-worked" type="number" placeholder="e.g. 40" />
         </label>
-        <label for="overtime-hours">
+        <label>
           Overtime Hours
-          <input id="overtime-hours" type="number" min="0" step="0.25" placeholder="e.g. 5" inputmode="decimal" />
+          <input id="overtime-hours" type="number" placeholder="e.g. 5" />
         </label>
-        <label for="deductions">
+        <label>
           Deductions
-          <input id="deductions" type="number" min="0" step="0.01" placeholder="$" inputmode="decimal" />
+          <input id="deductions" type="number" placeholder="$" />
         </label>
       </form>
 
-      <div class="results" aria-live="polite">
+      <div class="results">
         <p>Total Pay: <span id="total-pay">$0.00</span></p>
         <p><strong>Net Pay: <span id="net-pay">$0.00</span></strong></p>
       </div>
     </div>
 
     <!-- Hours Calculation Tab -->
-    <div id="hours-tab" class="tab-content" style="display: none;" role="tabpanel" aria-labelledby="hours-tab-button" aria-hidden="true">
-      <form class="calculator-form" novalidate>
-        <label for="start-time">
+    <div id="hours-tab" class="tab-content" style="display: none;">
+      <form class="calculator-form">
+        <label>
           Start Time
           <input id="start-time" type="time" />
         </label>
-        <label for="end-time">
+        <label>
           End Time
           <input id="end-time" type="time" />
         </label>
-        <label for="break-duration">
+        <label>
           Break Duration (minutes)
-          <input id="break-duration" type="number" min="0" step="5" placeholder="e.g. 30" inputmode="numeric" />
+          <input id="break-duration" type="number" placeholder="e.g. 30" />
         </label>
       </form>
 
-      <button id="calculate-hours-btn" type="button">Calculate Hours</button>
+      <button onclick="calculateHours()">Calculate Hours</button>
 
-      <div class="results" aria-live="polite">
+      <div class="results">
         <p>Calculated Hours: <span id="calculated-hours">0.00</span> hours</p>
       </div>
     </div>
-    <p id="calculator-error" class="status-message" role="alert" aria-live="assertive"></p>
   </main>
 
   <footer>

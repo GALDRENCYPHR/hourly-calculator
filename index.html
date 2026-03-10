@@ -64,6 +64,12 @@
      
     <div id="hours-tab" class="tab-content" style="display: none;">
       <form class="calculator-form">
+
+        <div class="results">
+        <p>Calculated Hours: <span id="calculated-hours">0.00</span> hours</p>
+      </div>
+    </div>
+        
         <label>
           Start Time
           <input id="start-time" type="time" />
@@ -80,10 +86,6 @@
 
       <button onclick="calculateHours()">Calculate Hours</button>
 
-      <div class="results">
-        <p>Calculated Hours: <span id="calculated-hours">0.00</span> hours</p>
-      </div>
-    </div>
   </main>
 
   <footer>
